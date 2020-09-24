@@ -1,30 +1,11 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 
-export default function Albums (props) {
-    const [albums, setAlbums] = useState([])
-
-    const getAlbums = async () => {
-        try {
-            const response = await fetch('http://localhost:3000/albums')
-            const data = await response.json()
-            setAlbums(data)
-            console.log(data)
-        } catch(error){
-            console.error(error)
-        }
-    }
-        useEffect(() => {
-            (async function (){
-                    await getAlbums()
-                }
-            )()
-        }, [])
-        
+export default function Albums (props) {        
     return (
     <div>
         <h1>Albums</h1>
 
-        {albums.map( album => {
+        {props.albums.map( album => {
             return (
                 <div key={album.id} className="album">
                     {/* <img src={album.img_url} /> */}
